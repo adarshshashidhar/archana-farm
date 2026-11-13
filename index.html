@@ -221,7 +221,7 @@ Beyond agriculture and hospitality, Shri Ramaswamy has dedicated his life to soc
                 <div style="font-size: 13px; color: #718096;">Click to open interactive map and view directions in a new tab</div>
             </a>
         </div>
-<form class="inquiry-form" id="inquiry-form" action="https://web3forms.com" method="POST">
+<form class="inquiry-form" id="inquiry-form" action="https://formsubmit.co" method="POST">
     <input type="hidden" name="access_key" value="c41bdd27-dccb-4a54-85a9-658459fca367">
     <input type="hidden" name="subject" value="New Stay Inquiry - Archana Farm">
     <h3>Start your stay.</h3>
@@ -265,7 +265,7 @@ dialog.addEventListener("close",()=>document.body.classList.remove("modal-open")
 // Form setup: INSERT YOUR FORM SERVICE HTTPS ENDPOINT below.
 // Empty by default: validation runs, but no data is sent or falsely reported as delivered.
 // Your service must accept FormData POST requests and allow this site's origin (CORS).
-const FORM_ENDPOINT="https://web3forms.com";
+const FORM_ENDPOINT="";
 const form=document.getElementById("inquiry-form");
 const dateInput=document.getElementById("check-in");
 function localDate(){const now=new Date();return [now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-")}
