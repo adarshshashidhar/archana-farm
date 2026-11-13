@@ -13,7 +13,7 @@
 :root{--olive:#3e5622;--olive-dark:#293c16;--beige:#f9f8f3;--ink:#2c2c2c;--muted:#62675b;--line:#dedfd4;--white:#fff;--radius:12px;--serif:"Playfair Display",Georgia,serif;--sans:Inter,Arial,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--beige);color:var(--ink);font:400 16px/1.7 var(--sans)}body.modal-open{overflow:hidden}img{display:block;width:100%;height:100%;object-fit:cover}button,input,textarea{font:inherit}button,a,input,textarea{-webkit-tap-highlight-color:transparent}a{color:inherit}button{cursor:pointer}a,button,input,textarea{touch-action:manipulation}:focus-visible{outline:3px solid #97ae6b;outline-offset:5px}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15}h1{font-size:clamp(3rem,6.5vw,6.5rem);letter-spacing:-.045em}h2{font-size:clamp(2.2rem,4vw,4rem);letter-spacing:-.035em}h3{font-size:1.6rem}p{color:var(--muted)}.wrap{width:min(1200px,calc(100% - 64px));margin-inline:auto}.section{padding-block:100px;scroll-margin-top:20px}.eyebrow{display:block;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);margin-bottom:20px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:40px}.section-head p{max-width:350px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;border:1px solid var(--olive);border-radius:4px;background:var(--olive);color:white;text-decoration:none;font-size:.86rem;font-weight:600;transition:background .2s,transform .2s}.button:hover{background:var(--olive-dark);transform:translateY(-2px)}.button.light{background:var(--beige);color:var(--olive);border-color:var(--beige)}.button.light:hover{background:white}.skip{position:fixed;top:8px;left:8px;z-index:100;transform:translateY(-150%);padding:10px 18px;background:white;color:var(--olive)}.skip:focus{transform:none}
 /* Navigation */
-.site-header{position:sticky;top:0;z-index:10;background:rgba(249,248,243,.97);border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:86px}.brand{text-decoration:none;font-family:var(--serif);font-size:1.6rem;color:var(--olive);white-space:nowrap}.brand small{display:block;font:600 .56rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase}.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0}.nav-links a{font-size:.8rem;text-decoration:none}.nav-links a:hover{color:var(--olive);text-decoration:underline;text-underline-offset:6px}.menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 14px;color:var(--olive)}
+.site-header{position:sticky;top:0;z-index:10;background:#f9f7ecf7;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:86px}.brand{text-decoration:none;font-family:var(--serif);font-size:1.6rem;color:var(--olive);white-space:nowrap}.brand small{display:block;font:600 .56rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase}.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0}.nav-links a{font-size:.8rem;text-decoration:none}.nav-links a:hover{color:var(--olive);text-decoration:underline;text-underline-offset:6px}.menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:8px 14px;color:var(--olive)}
 /* INSERT RESORT HERO IMAGE URL in --hero-image, e.g. url("images/hero.jpg").
    Keep the gradient for overlay contrast. Placeholder background works without images. */
 .hero{--hero-image:linear-gradient(145deg,#81916c,#3c502e 55%,#23351e);background-image:linear-gradient(90deg,rgba(17,29,13,.72),rgba(17,29,13,.18)),var(--hero-image);background-position:center;background-size:cover;color:white}.hero-inner{min-height:690px;min-height:min(780px,85svh);display:flex;flex-direction:column;align-items:start;justify-content:center;padding-block:100px}.hero .eyebrow{color:#e1e6d4}.hero h1{max-width:830px}.hero p{color:#edf0e6;max-width:450px;margin-block:24px 32px}.hero-caption{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-top:56px;opacity:.8}.intro-strip{border-bottom:1px solid var(--line);padding:24px 0}.strip-inner{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;color:var(--olive);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
@@ -148,15 +148,15 @@
 </section>
 <section class="section" id="experience" aria-labelledby="experience-title">
 <div class="wrap">
-<div class="section-head"><div><span class="eyebrow">03 / Days well spent</span><h2 id="experience-title">Follow your curiosity.</h2></div><p>Explore sample experiences. Confirm seasonal availability and replace with your farm’s activities.</p></div>
+<div class="section-head"><div><span class="eyebrow">03 / Days well spent</span><h2 id="experience-title">Follow your curiosity.</h2></div><p>Whether you are visiting with family, students, or colleagues, every day on the farm offers something memorable. Browse our hands-on activities and traditional meals below.</p></div>
 <div class="tabs" role="tablist" aria-label="Farm experiences">
 <button class="tab" id="tab-farm" role="tab" aria-selected="true" aria-controls="panel-farm" tabindex="0">On the farm</button>
 <button class="tab" id="tab-craft" role="tab" aria-selected="false" aria-controls="panel-craft" tabindex="-1">Make & discover</button>
 <button class="tab" id="tab-night" role="tab" aria-selected="false" aria-controls="panel-night" tabindex="-1">Traditional Village Style Food</button>
 </div>
-<div class="activity-panel" id="panel-farm" role="tabpanel" aria-labelledby="tab-farm" tabindex="0"><div class="photo"><span>INSERT FARM ACTIVITY PHOTO</span></div><div><span class="eyebrow">Slow down. Dig in.</span><h3>Simple joys, fresh from the land.</h3><p>Replace this text with your hands-on farming experiences, timings, and any age or accessibility requirements.</p><ul><li>Seasonal fruit picking</li><li>Traditional bullock cart rides</li><li>Guided farm and orchard walks</li></ul></div></div>
-<div class="activity-panel" id="panel-craft" role="tabpanel" aria-labelledby="tab-craft" tabindex="0" hidden><div class="photo"><span>INSERT Activity OR CRAFT PHOTO</span></div><div><span class="eyebrow">Create something meaningful</span><h3>A little earth. A little imagination.</h3><p>Add your workshop descriptions, booking requirements, and local artisan stories here.</p><ul><li>Pottery-making sessions</li><li>Local craft demonstrations</li><li>Farm-to-table cooking</li></ul></div></div>
-<div class="activity-panel" id="panel-night" role="tabpanel" aria-labelledby="tab-night" tabindex="0" hidden><div class="photo"><span>INSERT Food PHOTO</span></div><div><span class="eyebrow">Under open skies</span><h3>Experience Local Traditional Food.</h3><p>Describe your food and note weather-dependent or seasonal arrangements.</p><ul><li>Welcome Drink</li><li>Veg & Non-Veg Food Option</li><li>Freshly Made from locally procuted ingredients</li></ul></div></div>
+<div class="activity-panel" id="panel-farm" role="tabpanel" aria-labelledby="tab-farm"><div class="photo"><img src="ARCHANA FARM/WhatsApp Image 2026-11-10 at 2.04.32 PM.jpeg" alt="Guests enjoying farm activities at Archana Farm"></div><div><span class="eyebrow">Slow down. Dig in.</span><h3>Simple joys, fresh from the land.</h3><p>Discover authentic countryside experiences at Archana Farm. All activities are guided by our local team and tailored for families, students, and groups.</p><ul class="features"><li>Hands-on Farming</li><li>Traditional Games & Activity</li><li>Guided farm and orchard walks</li></ul></div></div>
+<div class="activity-panel" id="panel-craft" role="tabpanel" aria-labelledby="tab-craft" tabindex="0" hidden><div class="photo"><img src="ARCHANA FARM/WhatsApp Image 2026-11-09 at 8.26.22 AM (2).jpeg" alt="Hands-on sapling plantation and rural activities"></div><div><span class="eyebrow">Create & explore.</span><h3>Hands-on rural crafts & sapling plantation.</h3><p>Get your hands in the soil and learn traditional countryside skills. Ideal for students, families, and teams looking to connect closely with nature and sustainable farming.</p><ul class="features"><li>Hands-on sapling plantation & seed sowing</li><li>Guided sericulture & organic farming sessions</li><li>Interactive rural games & crafts</li></ul></div></div>
+<div class="activity-panel" id="panel-night" role="tabpanel" aria-labelledby="tab-night" tabindex="0" hidden><div class="photo"><img src="ARCHANA FARM/WhatsApp Image 2026-11-09 at 8.22.40 AM (2).jpeg" alt="Traditional village style food served at Archana Farm"></div><div><span class="eyebrow">Farm to table.</span><h3>Authentic village-style hospitality & meals.</h3><p>Savor wholesome, freshly prepared South Indian delicacies made with farm-grown & locally procuted ingredients, served warm in a serene open-air setting.</p><ul class="features"><li>Farm-fresh welcome drinks & tender coconut</li><li>Traditional village-style lunch with local specialties</li><li>Evening tea & snacks amidst the greenery</li></ul></div></div>
 </div>
 </section>
 <section class="section gallery-section" aria-labelledby="gallery-title">
@@ -191,10 +191,11 @@
             <!-- Left Side Content: Your text message column -->
             <div class="about-message-column" style="flex: 1.2; min-width: 320px;">
                 <p style="margin-top: 0; margin-bottom: 20px;">
-                    Welcome to Archana Farm, a peaceful agri-tourism destination designed to reconnect you with nature. Surrounded by vibrant agriculture fields, our resort blends simple countryside charms with modern comforts.
+                    Rooted in hard work, humility, and a deep reverence for nature, Archana Farm is the lifelong vision of Shri Ramaswamy and his family. Rising from humble beginnings through sheer perseverance, Shri Ramaswamy completed his graduation and served for eleven years in the government sector, where he became a trusted name among thousands of sericulture farmers across more than a hundred villages. Guided by the spirit of "Marali Mannige" (returning to the soil), he left behind a permanent government post to return to his ancestral roots in farming, establishing a successful silkworm seed production center alongside the well-known Ramaswamy Military Hotel, which serves hundreds of guests daily.
+Beyond agriculture and hospitality, Shri Ramaswamy has dedicated his life to social welfare and Kannada literature—enrolling thousands of members into the Kannada Sahitya Parishat in Bannur Hobli and leading the community restoration of the historic Mattitaleshwara Temple. Together with his tireless wife, Smt. Manjula, their daughter Smt. Ashwini, and their son Aravind—a Mechanical Engineering graduate and M.Tech holder in Automobile Engineering working as a Senior Manager—the family embodies the true spirit of Kayaka (dedicated work), providing direct employment to over thirty people and supporting countless families.
                 </p>
                 <p style="margin-bottom: 0;">
-                    Whether you are planning family gatherings, corporate getaways, or educational student visits, we offer fresh farm-to-table dining, spacious outdoor fields, and relaxed accommodations to slow down and unwind together.
+                   Created in loving memory of their beloved daughter Archana, whom they lost at a young age, Archana Farm stands today as a serene agricultural haven visited by hundreds of guests. Built with love and care, it continues to grow as a premier agri-tourism destination where visitors can experience authentic countryside living, warm hospitality, and the timeless beauty of the land.
                 </p>
             </div>
             
@@ -208,9 +209,9 @@
     </section>
 <section class="section contact-section" id="contact" aria-labelledby="contact-title">
 <div class="contact-grid wrap">
-<div class="contact-copy"><span class="eyebrow">06 / Your countryside escape</span><h2 id="contact-title">Let’s plan your<br>slower days.</h2><p>Tell us a little about your visit. Replace this introduction with your booking process and expected response time.</p>
+<div class="contact-copy"><span class="eyebrow">06 / Your countryside escape</span><h2 id="contact-title">Let’s plan your<br>slower days.</h2>
 <!-- INSERT REAL CONTACT DETAILS. Add tel: and mailto: links after replacing placeholders. -->
-<dl class="contact-details"><div><dt>Call us</dt><dd>9632900666</dd></div><div><dt>Write to us</dt><dd>aravindyr@gmail.com </dd></div><div><dt>Find us</dt><dd>Archana Farm, Sultan Rd, Yachenahalli, Bannur, Karnataka 571101, India</dd></div><div><dt>Reception hours</dt><dd>Sunday-Saturday : 10:00 AM TO 6:00 PM</dd></div></dl>
+<dl class="contact-details"><div><dt>Call us</dt><dd>9632900666</dd></div><div><dt>Write to us</dt><dd>archanaafarm@gmail.com</dd></div><div><dt>Find us</dt><dd>Archana Farm, Sultan Rd, Yachenahalli, Bannur, Karnataka 571101, India</dd></div><div><dt>Reception hours</dt><dd>Sunday-Saturday : 10:00 AM TO 6:00 PM</dd></div></dl>
 <!-- REPLACE with your actual map link or an accessible map embed -->
 <!-- LINE 169: Fail-safe Clickable Map Card for Archana Farm -->
         <div style="width: 100%; margin-top: 15px; margin-bottom: 20px; text-align: center;">
@@ -220,12 +221,15 @@
                 <div style="font-size: 13px; color: #718096;">Click to open interactive map and view directions in a new tab</div>
             </a>
         </div>
-<form class="inquiry-form" id="inquiry-form" method="post">
-<h3>Start your stay.</h3>
-<div class="form-grid"><div class="field"><label for="guest-name">Name *</label><input id="guest-name" name="name" autocomplete="name" required maxlength="100" placeholder="Your full name"></div><div class="field"><label for="guest-email">Email *</label><input id="guest-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></div><div class="field full"><label for="check-in">Preferred check-in date *</label><input id="check-in" name="check_in" type="date" required></div><div class="field full"><label for="message">Your message *</label><textarea id="message" name="message" required minlength="10" maxlength="4000" placeholder="Guests, length of stay, and anything you’d love to experience…"></textarea></div></div>
-<button class="button form-button" type="submit">Submit Inquiry</button>
-<p class="form-note">Demo form: a submission service must be connected before inquiries can be delivered. A request does not confirm a reservation.</p>
-<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+<form class="inquiry-form" id="inquiry-form" action="https://web3forms.com" method="POST">
+    <input type="hidden" name="access_key" value="c41bdd27-dccb-4a54-85a9-658459fca367">
+    <input type="hidden" name="subject" value="New Stay Inquiry - Archana Farm">
+    <h3>Start your stay.</h3>
+    <div class="form-grid"><div class="field"><label for="guest-name">Name *</label><input id="guest-name" name="name" autocomplete="name" maxlength="100" placeholder="Your full name" required></div><div class="field"><label for="guest-phone">Mobile Number *</label><input id="guest-phone" name="mobile_number" type="tel" autocomplete="tel" maxlength="15" placeholder="+91 98765 43210" required></div></div>
+    <div class="field"><label for="check-in">Preferred check-in date *</label><input id="check-in" name="check_in_date" type="date" required></div>
+    <div class="field"><label for="guest-message">Your message *</label><textarea id="guest-message" name="message" placeholder="Guests, length of stay, and anything you'd love to experience..." required></textarea></div>
+    <button class="button form-submit" type="submit">Submit Inquiry</button>
+    <p class="form-note">We will get back to you shortly to confirm availability.</p>
 </form>
 </div>
 </section>
@@ -260,7 +264,7 @@ dialog.addEventListener("close",()=>document.body.classList.remove("modal-open")
 // Form setup: INSERT YOUR FORM SERVICE HTTPS ENDPOINT below.
 // Empty by default: validation runs, but no data is sent or falsely reported as delivered.
 // Your service must accept FormData POST requests and allow this site's origin (CORS).
-const FORM_ENDPOINT="";
+const FORM_ENDPOINT="https://web3forms.com";
 const form=document.getElementById("inquiry-form");
 const dateInput=document.getElementById("check-in");
 function localDate(){const now=new Date();return [now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-")}
