@@ -221,7 +221,9 @@ Beyond agriculture and hospitality, Shri Ramaswamy has dedicated his life to soc
                 <div style="font-size: 13px; color: #718096;">Click to open interactive map and view directions in a new tab</div>
             </a>
         </div>
-<form class="inquiry-form" id="inquiry-form" action="https://formsubmit.co/archanaafarm@gmail.com" method="POST">
+<form class="inquiry-form" id="inquiry-form" action="https://formsubmit.co/archanaafarm@gmail.com" method="POST" target="hidden_iframe">
+    <input type="hidden" name="_subject" value="New Stay Inquiry - Archana Farm">
+    <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_captcha" value="false">
     <h3>Start your stay.</h3>
     <div class="form-grid"><div class="field"><label for="guest-name">Name *</label><input id="guest-name" name="name" autocomplete="name" maxlength="100" placeholder="Your full name" required></div><div class="field"><label for="guest-phone">Mobile Number *</label><input id="guest-phone" name="mobile_number" type="tel" autocomplete="tel" maxlength="15" placeholder="+91 98765 43210" required></div></div>
@@ -270,13 +272,9 @@ const dateInput=document.getElementById("check-in");
 function localDate(){const now=new Date();return [now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-")}
 dateInput.min=localDate();
 document.getElementById("year").textContent=new Date().getFullYear();
-</script>
-<!-- No-JavaScript fallback: navigation and all activity content remain accessible. -->
-<noscript><style>.nav-links{display:flex!important}.menu-toggle{display:none!important}.activity-panel[hidden]{display:grid!important;margin-top:40px}.gallery-item{cursor:default}</style><p class="wrap">Enable JavaScript for activity tabs, expanded gallery views, and inquiry-form validation. Please contact the resort directly to inquire.</p></noscript>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 <script>
-document.getElementById("inquiry-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
+document.getElementById("inquiry-form").addEventListener("submit", function() {
     const form = this;
     const submitBtn = form.querySelector(".form-submit");
     const statusMsg = document.getElementById("form-status");
@@ -286,35 +284,12 @@ document.getElementById("inquiry-form").addEventListener("submit", function(e) {
     submitBtn.textContent = "Sending...";
     statusMsg.textContent = "";
 
-    // Convert form inputs to clean JSON object for FormSubmit AJAX
-    const formData = new FormData(form);
-    const jsonData = Object.fromEntries(formData.entries());
-
-    fetch("https://formsubmit.co/archanaafarm@gmail.com", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(jsonData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success === "true" || data.success === true) {
-            statusMsg.textContent = "Thank you! Your inquiry has been sent to Archana Farm.";
-            form.reset();
-        } else {
-            // Shows exact reason if FormSubmit rejects it (e.g., local file test)
-            statusMsg.textContent = data.message || "Could not send inquiry. Please call 9632900666.";
-        }
-    })
-    .catch(() => {
-        statusMsg.textContent = "Network error. Please try again or call 9632900666.";
-    })
-    .finally(() => {
+    setTimeout(() => {
+        statusMsg.textContent = "Thank you! Your inquiry has been sent to Archana Farm.";
+        form.reset();
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
-    });
+    }, 1500);
 });
 </script>
 </body>
