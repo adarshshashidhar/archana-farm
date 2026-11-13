@@ -275,7 +275,7 @@ document.getElementById("year").textContent=new Date().getFullYear();
 <noscript><style>.nav-links{display:flex!important}.menu-toggle{display:none!important}.activity-panel[hidden]{display:grid!important;margin-top:40px}.gallery-item{cursor:default}</style><p class="wrap">Enable JavaScript for activity tabs, expanded gallery views, and inquiry-form validation. Please contact the resort directly to inquire.</p></noscript>
 <script>
 document.getElementById("inquiry-form").addEventListener("submit", function(e) {
-    e.preventDefault(); // Stops the browser from navigating to another page
+    e.preventDefault();
 
     const form = this;
     const submitBtn = form.querySelector(".form-submit");
@@ -286,10 +286,17 @@ document.getElementById("inquiry-form").addEventListener("submit", function(e) {
     submitBtn.textContent = "Sending...";
     statusMsg.textContent = "";
 
+    // Convert form inputs to clean JSON object for FormSubmit AJAX
+    const formData = new FormData(form);
+    const jsonData = Object.fromEntries(formData.entries());
+
     fetch("https://formsubmit.co", {
         method: "POST",
-        headers: { "Accept": "application/json" },
-        body: new FormData(form)
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(jsonData)
     })
     .then(response => response.json())
     .then(data => {
@@ -297,7 +304,8 @@ document.getElementById("inquiry-form").addEventListener("submit", function(e) {
             statusMsg.textContent = "Thank you! Your inquiry has been sent to Archana Farm.";
             form.reset();
         } else {
-            statusMsg.textContent = "Could not send inquiry. Please call 9632900666.";
+            // Shows exact reason if FormSubmit rejects it (e.g., local file test)
+            statusMsg.textContent = data.message || "Could not send inquiry. Please call 9632900666.";
         }
     })
     .catch(() => {
