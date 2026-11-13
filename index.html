@@ -243,75 +243,106 @@ Beyond agriculture and hospitality, Shri Ramaswamy has dedicated his life to soc
 <dialog id="gallery-dialog" aria-label="Expanded gallery photograph"><div class="dialog-head"><p id="gallery-caption"></p><button class="close-dialog" type="button" autofocus>Close</button></div><div class="photo dialog-photo" id="gallery-content"></div></dialog>
 <script>
 "use strict";
-// Mobile navigation. Links remain visible if JavaScript is unavailable.
+// 1. Mobile navigation
 const toggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 const smallScreen = window.matchMedia("(max-width:760px)");
-toggle.hidden = false;
-function closeMenu(){navLinks.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");toggle.textContent="Menu"}
-toggle.addEventListener("click",()=>{const open=toggle.getAttribute("aria-expanded")!=="true";navLinks.classList.toggle("is-open",open);toggle.setAttribute("aria-expanded",String(open));toggle.textContent=open?"Close":"Menu"});
-navLinks.addEventListener("click",event=>{if(event.target.closest("a"))closeMenu()});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"&&toggle.getAttribute("aria-expanded")==="true"){closeMenu();toggle.focus()}});
-smallScreen.addEventListener("change",closeMenu);
-// Tabs support clicks, arrow keys, Home and End.
-const tabs=Array.from(document.querySelectorAll('[role="tab"]'));
-function activateTab(tab,focus=false){tabs.forEach(item=>{const selected=item===tab;item.setAttribute("aria-selected",String(selected));item.tabIndex=selected?0:-1;document.getElementById(item.getAttribute("aria-controls")).hidden=!selected});if(focus)tab.focus()}
-tabs.forEach((tab,index)=>{tab.addEventListener("click",()=>activateTab(tab));tab.addEventListener("keydown",event=>{let next;if(event.key==="ArrowRight")next=(index+1)%tabs.length;if(event.key==="ArrowLeft")next=(index-1+tabs.length)%tabs.length;if(event.key==="Home")next=0;if(event.key==="End")next=tabs.length-1;if(next!==undefined){event.preventDefault();activateTab(tabs[next],true)}})});
-// Native dialog provides Escape dismissal and focus containment.
-const dialog=document.getElementById("gallery-dialog");
-const galleryContent=document.getElementById("gallery-content");
-document.querySelectorAll(".gallery-item").forEach(item=>item.addEventListener("click",()=>{galleryContent.replaceChildren();const image=item.querySelector("img");const content=image?image.cloneNode(true):item.querySelector("span").cloneNode(true);if(image)content.loading="eager";galleryContent.append(content);document.getElementById("gallery-caption").textContent=image?image.alt:item.getAttribute("aria-label");dialog.showModal();document.body.classList.add("modal-open")}));
-dialog.querySelector(".close-dialog").addEventListener("click",()=>dialog.close());
-dialog.addEventListener("click",event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close()}});
-dialog.addEventListener("close",()=>document.body.classList.remove("modal-open"));
-// Form setup: INSERT YOUR FORM SERVICE HTTPS ENDPOINT below.
-// Empty by default: validation runs, but no data is sent or falsely reported as delivered.
-// Your service must accept FormData POST requests and allow this site's origin (CORS).
-const FORM_ENDPOINT="";
-const form=document.getElementById("inquiry-form");
-const dateInput=document.getElementById("check-in");
-function localDate(){const now=new Date();return [now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-")}
-dateInput.min=localDate();
-document.getElementById("year").textContent=new Date().getFullYear();
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-<script>
-document.getElementById("inquiry-form").addEventListener("submit", function() {
-    const form = this;
-    const submitBtn = form.querySelector(".form-submit");
-    const statusMsg = document.getElementById("form-status");
-    const originalText = submitBtn.textContent;
+if (toggle && navLinks) {
+    toggle.hidden = false;
+    function closeMenu() {
+        navLinks.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.textContent = "Menu";
+    }
+    toggle.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") !== "true";
+        navLinks.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.textContent = open ? "Close" : "Menu";
+    });
+    navLinks.addEventListener("click", event => { if (event.target.closest("a")) closeMenu(); });
+    document.addEventListener("keydown", event => { if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") { closeMenu(); toggle.focus(); } });
+    smallScreen.addEventListener("change", closeMenu);
+}
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
-    statusMsg.textContent = "";
-
-    setTimeout(() => {
-        statusMsg.textContent = "Thank you! Your inquiry has been sent to Archana Farm.";
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    }, 1500);
+// 2. Activity tabs (On the farm / Make & discover / Traditional Village Style Food)
+const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+function activateTab(tab, focus = false) {
+    tabs.forEach(item => {
+        const selected = item === tab;
+        item.setAttribute("aria-selected", String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        const panel = document.getElementById(item.getAttribute("aria-controls"));
+        if (panel) panel.hidden = !selected;
+    });
+    if (focus) tab.focus();
+}
+tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activateTab(tab));
+    tab.addEventListener("keydown", event => {
+        let next;
+        if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+        if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === "Home") next = 0;
+        if (event.key === "End") next = tabs.length - 1;
+        if (next !== undefined) { event.preventDefault(); activateTab(tabs[next], true); }
+    });
 });
-</script>
-   </body>
-   <script>
-document.getElementById("inquiry-form").addEventListener("submit", function() {
-    const form = this;
-    const submitBtn = form.querySelector(".form-submit");
-    const statusMsg = document.getElementById("form-status");
-    const originalText = submitBtn.textContent;
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
-    statusMsg.textContent = "";
+// 3. Gallery lightbox modal
+const dialog = document.getElementById("gallery-dialog");
+const galleryContent = document.getElementById("gallery-content");
+if (dialog && galleryContent) {
+    document.querySelectorAll(".gallery-item").forEach(item => item.addEventListener("click", () => {
+        galleryContent.replaceChildren();
+        const image = item.querySelector("img");
+        const content = image ? image.cloneNode(true) : item.querySelector("span").cloneNode(true);
+        if (image) content.loading = "eager";
+        galleryContent.append(content);
+        document.getElementById("gallery-caption").textContent = image ? image.alt : item.getAttribute("aria-label");
+        dialog.showModal();
+        document.body.classList.add("modal-open");
+    }));
+    dialog.querySelector(".close-dialog").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => {
+        if (event.target === dialog) {
+            const r = dialog.getBoundingClientRect();
+            if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close();
+        }
+    });
+    dialog.addEventListener("close", () => document.body.classList.remove("modal-open"));
+}
 
-    setTimeout(() => {
-        statusMsg.textContent = "Thank you! Your inquiry has been sent to Archana Farm.";
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    }, 1500);
-});
+// 4. Date picker min date & Footer year
+const dateInput = document.getElementById("check-in");
+if (dateInput) {
+    const now = new Date();
+    dateInput.min = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, "0"), String(now.getDate()).padStart(2, "0")].join("-");
+}
+const yearSpan = document.getElementById("year");
+if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+// 5. Form confirmation message on same page
+const inquiryForm = document.getElementById("inquiry-form");
+if (inquiryForm) {
+    inquiryForm.addEventListener("submit", function() {
+        const submitBtn = inquiryForm.querySelector(".form-submit");
+        const statusMsg = document.getElementById("form-status");
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+        if (statusMsg) statusMsg.textContent = "";
+
+        setTimeout(() => {
+            if (statusMsg) statusMsg.textContent = "Thank you! Your inquiry has been sent to Archana Farm.";
+            inquiryForm.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }, 1500);
+    });
+}
 </script>
+<noscript><style>.nav-links{display:flex!important}.menu-toggle{display:none!important}.activity-panel[hidden]{display:grid!important;margin-top:40px}.gallery-item{cursor:default}</style><p class="wrap">Enable JavaScript for activity tabs, expanded gallery views, and inquiry-form validation. Please contact the resort directly to inquire.</p></noscript>
 </body>
 </html>
