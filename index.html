@@ -293,5 +293,24 @@ document.getElementById("inquiry-form").addEventListener("submit", function() {
     }, 1500);
 });
 </script>
+   <script>
+document.getElementById("inquiry-form").addEventListener("submit", function() {
+    const form = this;
+    const submitBtn = form.querySelector(".form-submit");
+    const statusMsg = document.getElementById("form-status");
+    const originalText = submitBtn.textContent;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    statusMsg.textContent = "";
+
+    setTimeout(() => {
+        statusMsg.textContent = "Thank you! Your inquiry has been sent to Archana Farm.";
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }, 1500);
+});
+</script>
 </body>
 </html>
